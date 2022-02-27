@@ -1,5 +1,6 @@
 //1.引入express
 const express = require('express');
+const {request, response} = require("express");
 //2.创建应用对象
 const app = express();
 
@@ -60,6 +61,16 @@ app.get("/delay", (request, response) => {
     },3000)
 
 });
+
+app.all('/jquery-server',(request,response)=>{
+    response.setHeader("Access-Control-Allow-Origin", '*');
+    const info = {
+        name: '小叶',
+        age: 21
+    }
+    // response.send('hello Jquery AJAX');
+    response.send(JSON.stringify(info))//其实不用转换返回的也是json数据格式
+})
 
 
 //监听端口启动服务
