@@ -12,6 +12,18 @@ app.get("/server",(request,response)=>{
     //设置响应
     response.send('hello,AJAX');
 });
+
+app.post("/server",(request,response)=>{
+//允许接收所有请求
+// app.all("/server",(request,response)=>{
+    //设置响应头,设置允许跨域
+    response.setHeader("Access-Control-Allow-Origin",'*');
+    //处理自定义请求头
+    response.setHeader('Access-Control-Allow-Header','*')
+    //设置响应
+    response.send('hello,AJAX POST');
+});
+
 //监听端口启动服务
 app.listen(8000,()=>{
     console.log("服务已经启动，8000端口监听中。。。。")
