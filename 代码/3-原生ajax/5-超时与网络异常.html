@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>超时与网络异常</title>
+    <style>
+        #result{
+            width: 200px;
+            height: 100px;
+            border: solid 1px #bfa;
+        }
+    </style>
+</head>
+<body>
+<button>点击发送请求</button>
+<div id="result"></div>
+<script>
+    const btn = document.getElementsByTagName('button')[0];
+    const result = document.getElementById('result')
+
+    btn.addEventListener('click',function (){
+
+        const xhr = new XMLHttpRequest()
+        //延时两秒
+        xhr.timeout = 2000;
+        //延时回调
+        xhr.ontimeout = function () {
+            alert('网络异常，请稍后重试')
+        }
+        //网络异常回调
+        xhr.onerror = function () {
+            alert('你的网络似乎出了一些问题!')
+        }
+
+        xhr.open('GET','http://192.168.0.111:8000/delay')
+        xhr.send()
+        xhr.onreadystatechange = function (){
+            if (xhr.readyState===4){
+                if (xhr.status >=200&&xhr.status<300){
+                    result.innerHTML = xhr.response
+                }
+            }
+        }
+    })
+
+</script>
+</body>
+</html>

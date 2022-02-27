@@ -33,7 +33,7 @@ app.all("/json-server", (request, response) => {
     response.setHeader('Access-Control-Allow-Header', '*')
     //响应一个数据
     const data = {
-        name: 'yealike',
+        name: 'yealike666',
         age: 21
     }
     //对对象进行字符转换
@@ -41,6 +41,26 @@ app.all("/json-server", (request, response) => {
     //设置响应,响应体只能响应字符串和buffer,如果要响应一个对象，需要先对对象进行一个json转换
     response.send(str);
 });
+
+
+//针对IE缓存
+app.get("/ie", (request, response) => {
+
+    response.setHeader("Access-Control-Allow-Origin", '*');
+    response.send('hello,AJAX-IE-你好啊');
+});
+
+//超时与网络异常
+app.get("/delay", (request, response) => {
+
+    response.setHeader("Access-Control-Allow-Origin", '*');
+
+    setTimeout(()=>{
+        response.send('延时响应');
+    },3000)
+
+});
+
 
 //监听端口启动服务
 app.listen(8000, () => {
