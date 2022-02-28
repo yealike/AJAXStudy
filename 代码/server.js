@@ -65,7 +65,7 @@ app.get("/delay", (request, response) => {
 app.all('/jquery-server',(request,response)=>{
     response.setHeader("Access-Control-Allow-Origin", '*');
     //处理自定义请求头
-    response.setHeader('Access-Control-Allow-Header', '*')
+    response.setHeader('Access-Control-Allow-Headers', '*')
     const info = {
         name: '小叶',
         age: 21
@@ -73,6 +73,37 @@ app.all('/jquery-server',(request,response)=>{
     // response.send('hello Jquery AJAX');
     response.send(JSON.stringify(info))//其实不用转换返回的也是json数据格式
 })
+
+//axios
+app.all("/axios-server", (request, response) => {
+
+    response.setHeader("Access-Control-Allow-Origin", '*');
+    response.setHeader('Access-Control-Allow-Headers', '*')
+
+    const info = {
+        name: '小叶',
+        age: 21,
+        msg: 'hello Axios'
+    }
+    response.send(JSON.stringify(info))//其实不用转换返回的也是json数据格式
+
+});
+
+
+//fetch
+app.all("/fetch-server", (request, response) => {
+
+    response.setHeader("Access-Control-Allow-Origin", '*');
+    response.setHeader('Access-Control-Allow-Headers', '*')
+
+    const info = {
+        name: '小叶',
+        age: 21,
+        msg: 'hello Axios'
+    }
+    response.send(JSON.stringify(info))//其实不用转换返回的也是json数据格式
+
+});
 
 
 //监听端口启动服务
