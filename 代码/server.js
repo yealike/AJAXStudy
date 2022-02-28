@@ -64,6 +64,8 @@ app.get("/delay", (request, response) => {
 
 app.all('/jquery-server',(request,response)=>{
     response.setHeader("Access-Control-Allow-Origin", '*');
+    //处理自定义请求头
+    response.setHeader('Access-Control-Allow-Header', '*')
     const info = {
         name: '小叶',
         age: 21
